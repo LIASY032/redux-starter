@@ -9,10 +9,26 @@ import projects, { projectAdded } from "./store/projects";
 import { userAdded } from "./store/user";
 const store = configureStore();
 
-store.dispatch(userAdded({ name: "user 1" }));
-store.dispatch(function (dispatch, getState) {
-  dispatch({ type: "bugsRecieved", bugs: [1, 2, 3] });
-});
+
+store.dispatch({
+  type: "apiCallBegan",
+  payload: {
+    url: "/bugs",
+    method: "get",
+    data: {},
+    onSuccess: "bugsRecieved",
+    onError: "apiRequestFailed"
+  }
+})
+
+
+
+
+
+// store.dispatch(userAdded({ name: "user 1" }));
+// store.dispatch(function (dispatch, getState) {
+//   dispatch({ type: "bugsRecieved", bugs: [1, 2, 3] });
+// });
 // store.dispatch(userAdded({ name: "user 2" }));
 // store.dispatch(projectAdded({ name: "project 1" }));
 
