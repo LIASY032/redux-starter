@@ -7,6 +7,6 @@ import reducer from "./reducer";
 export default function () {
   return configureStore({
     reducer,
-    middleware: [...getDefaultMiddleware(), logger("log"), func, api],
+    middleware: [...getDefaultMiddleware(), api],
   });
 }

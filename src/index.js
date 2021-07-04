@@ -1,25 +1,19 @@
 import configureStore from "./store/configureStore";
-import {
-  bugAdded,
-  bugAssignedToUser,
-  bugResolved,
-  getBugsByUser,
-} from "./store/bugs";
-import projects, { projectAdded } from "./store/projects";
-import { userAdded } from "./store/user";
+
+import { addBug, assignBugToUser, loadBugs, resolveBug } from "./store/bugs";
+// import {
+//   bugAdded,
+//   bugAssignedToUser,
+//   bugResolved,
+//   getBugsByUser,
+// } from "./store/bugs";
+// import projects, { projectAdded } from "./store/projects";
+// import { userAdded } from "./store/user";
 const store = configureStore();
+store.dispatch(loadBugs())
+setTimeout(()=> store.dispatch(assignBugToUser(1, 4)), 2000)
 
 
-store.dispatch({
-  type: "apiCallBegan",
-  payload: {
-    url: "/bugs",
-    method: "get",
-    data: {},
-    onSuccess: "bugsRecieved",
-    onError: "apiRequestFailed"
-  }
-})
 
 
 
